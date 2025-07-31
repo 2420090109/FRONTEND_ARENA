@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Indian Majestic Restaurant- Fine Dining Restaurant</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff9f4;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      color: #d1574a;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background-color: #d1574a;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-family: 'Georgia', serif;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav li {
+      font-weight: 600;
+    }
+    nav li button {
+      background: none;
+      border: none;
+      font: inherit;
+      cursor: pointer;
+      color: white;
+      padding: 0;
+    }
+    nav li button:hover,
+    nav li button:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1541544183841-239c862dd233?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      height: 60vh;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 3px 5px rgba(0,0,0,0.6);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      background-color: rgba(209, 87, 74, 0.7);
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+    }
+
+    /* Menu Section */
+    section.menu {
+      margin-bottom: 3rem;
+    }
+    section.menu h3 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #d1574a;
+      font-family: 'Georgia', serif;
+    }
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.5rem;
+    }
+    .menu-item {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(209, 87, 74, 0.2);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .menu-item:hover {
+      transform: scale(1.03);
+    }
+    .menu-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 4px solid #d1574a;
+    }
+    .menu-item-content {
+      padding: 1rem;
+    }
+    .menu-item-content h4 {
+      margin: 0 0 0.5rem 0;
+      font-family: 'Georgia', serif;
+      color: #b8423f;
+    }
+    .menu-item-content p {
+      margin: 0 0 0.75rem 0;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .menu-item-content span.price {
+      font-weight: 700;
+      color: #d1574a;
+      font-size: 1.1rem;
+    }
+
+    /* Gallery Section */
+    section.gallery {
+      margin-bottom: 3rem;
+    }
+    section.gallery h3 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #d1574a;
+      font-family: 'Georgia', serif;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 1rem;
+    }
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      height: 150px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(209, 87, 74, 0.5);
+      z-index: 2;
+    }
+
+    /* Reservation Form */
+    section.reservation {
+      margin-bottom: 4rem;
+      background: #fde9e7;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 0 15px rgba(209, 87, 74, 0.2);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    section.reservation h3 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: #d1574a;
+      font-family: 'Georgia', serif;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    label {
+      font-weight: 600;
+      color: #b8423f;
+    }
+    input, select, textarea {
+      padding: 0.6rem;
+      border: 1.5px solid #d1574a;
+      border-radius: 6px;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #b8423f;
+      outline: none;
+      box-shadow: 0 0 5px #d1574aaa;
+    }
+    button.submit-btn {
+      background-color: #d1574a;
+      border: none;
+      padding: 1rem;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    button.submit-btn:hover {
+      background-color: #b8423f;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #d1574a;
+      color: white;
+      text-align: center;
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Nav Menu for smaller screens */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Indian Majestic Restaurant</h1>
+    <nav>
+      <ul>
+        <li><button onclick="scrollToSection('menu')">Menu</button></li>
+        <li><button onclick="scrollToSection('gallery')">Gallery</button></li>
+        <li><button onclick="scrollToSection('reservation')">Reservation</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Restaurant hero image and welcome message">
+      <h2>Welcome to Indian Majestic Restaurant</h2>
+    </section>
+
+    <section id="menu" class="menu" aria-labelledby="menu-heading">
+      <h3 id="menu-heading">Our Menu</h3>
+      <div class="menu-items">
+        <article class="menu-item" tabindex="0">
+          <img src="download.jpeg" alt="Grilled Salmon with lemon and vegetables" />
+          <div class="menu-item-content">
+            <h4>Hyderabadi Special Biryani</h4>
+            <p>Hyderabadi Biryani, a culinary masterpiece, is known for its aromatic blend of spices, tender meat, and fragrant rice.</p>
+            <span class="price">250\-</span>
+          </div>
+        </article>
+        <article class="menu-item" tabindex="0">
+          <img src="download (1).jpeg" alt="Classic Margherita Pizza with basil and cheese" />
+          <div class="menu-item-content">
+            <h4>Margherita Pizza</h4>
+            <p>Stone-baked pizza with fresh mozzarella, basil leaves, and a rich tomato sauce.</p>
+            <span class="price">199\-</span>
+          </div>
+        </article>
+        <article class="menu-item" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?auto=format&fit=crop&w=600&q=80" alt="Chocolate Lava Cake dessert" />
+          <div class="menu-item-content">
+            <h4>Chocolate Lava Cake</h4>
+            <p>Warm chocolate cake with a gooey molten center, served with vanilla ice cream.</p>
+            <span class="price">300\-</span>
+          </div>
+        </article>
+        <article class="menu-item" tabindex="0">
+          <img src="images.jpeg" alt="Caesar Salad with grilled chicken" />
+          <div class="menu-item-content">
+            <h4>Indian Green Salad</h4>
+            <p>Crispy, Healthy, Nutritious Green Salad</p>
+            <span class="price">50/-</span>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="gallery" class="gallery" aria-labelledby="gallery-heading">
+      <h3 id="gallery-heading">Gallery</h3>
+      <div class="gallery-grid">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Ambiance of restaurant dining area" tabindex="0" />
+       
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=400&q=80" alt="Fresh plated meal" tabindex="0" />
+        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=400&q=80" alt="Elegant table setting with candles" tabindex="0" />
+        
+      </div>
+    </section>
+
+
+
+    <section id="reservation" class="reservation" aria-labelledby="reservation-heading">
+      <h3 id="reservation-heading">Table Reservation / Feedback</h3>
+      <form id="reservationForm" aria-describedby="formInstructions" novalidate>
+        <p id="formInstructions">Please fill out the form to reserve a table or leave feedback.</p>
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required minlength="2" />
+
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" placeholder="+91 " required pattern="^\+?[0-9\s\-]{7,15}$" />
+
+        <label for="date">Reservation Date</label>
+        <input type="date" id="date" name="date" min="" />
+
+        <label for="time">Reservation Time</label>
+        <select id="time" name="time">
+          <option value="">Select time</option>
+          <option>12:00 PM</option>
+          <option>1:00 PM</option>
+          <option>2:00 PM</option>
+          <option>6:00 PM</option>
+          <option>7:00 PM</option>
+          <option>8:00 PM</option>
+        </select>
+
+        <label for="guests">Number of Guests</label>
+        <select id="guests" name="guests">
+          <option value="">Select guests</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5+</option>
+        </select>
+
+        <label for="message">Additional Requests / Feedback</label>
+        <textarea id="message" name="message" rows="4" placeholder="Your message here..."></textarea>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Indian Majestic Restaurant. All Rights Reserved.
+  </footer>
+
+  <script>
+    // Smooth scroll to page sections
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Set min date to today for date input
+    document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+    // Simple form validation and submission handling
+    const form = document.getElementById('reservationForm');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Basic HTML5 form validation triggered by browser automatically.
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Simulate form submission (e.g., AJAX call or backend integration)
+      alert('Thank you for your submission! We will contact you soon.');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
